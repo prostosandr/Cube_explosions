@@ -346,6 +346,8 @@ GameObject:
   - component: {fileID: 387521509}
   - component: {fileID: 387521508}
   - component: {fileID: 387521513}
+  - component: {fileID: 387521515}
+  - component: {fileID: 387521514}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -478,10 +480,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f516d4f916008c4baf3d76e27a109d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &387521514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387521507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7280b5f809e7f4c980effea0a5f436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cube: {fileID: 387521513}
   chanceTreshold: 100
-  _explosionRadius: 50
-  _explosionForce: 300
+--- !u!114 &387521515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387521507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8da9bd7b816ec4abc2600f7ec233bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionRadius: 500
+  _explosionForce: 500
   _effect: {fileID: 417761080263594739, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
+  _cube: {fileID: 387521513}
 --- !u!1 &552428792
 GameObject:
   m_ObjectHideFlags: 0
