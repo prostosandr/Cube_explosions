@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 387521510}
   - component: {fileID: 387521509}
   - component: {fileID: 387521508}
+  - component: {fileID: 387521513}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -460,11 +461,27 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.171738, y: 3.14, z: 14.6}
-  m_LocalScale: {x: 1.7513, y: 1.7513, z: 1.7513}
+  m_LocalScale: {x: 3.0980496, y: 3.0980496, z: 3.0980496}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387521513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387521507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f516d4f916008c4baf3d76e27a109d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceTreshold: 100
+  _explosionRadius: 50
+  _explosionForce: 300
+  _effect: {fileID: 417761080263594739, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
 --- !u!1 &552428792
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +698,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.31577396, y: -0, z: -0, w: 0.9488345}
-  m_LocalPosition: {x: 26.21, y: 7.66, z: 5.54}
+  m_LocalPosition: {x: 26.21, y: 8.24, z: 4.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -925,7 +942,7 @@ Transform:
   m_GameObject: {fileID: 1464979495}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000004172325, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.36, z: -7.8299994}
+  m_LocalPosition: {x: 0, y: -5.36, z: -9.61}
   m_LocalScale: {x: 24.145512, y: 11.775, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
