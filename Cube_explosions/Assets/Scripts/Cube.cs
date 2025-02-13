@@ -1,22 +1,13 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private float chanceTreshold;
+    [SerializeField] private float _chanceTreshold;
 
-    public event Action<GameObject, float, List<Rigidbody>> Spawned;
-    public event Action<List<Rigidbody>> Exploded;
-
-    public void DecreaseChance()
-    {
-        int divisor = 2;
-
-        chanceTreshold /= divisor;
-    }
+    public event Action<GameObject, float> Spawned;
 
     private void Awake()
     {
@@ -25,10 +16,14 @@ public class Cube : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        List<Rigidbody> explodableObjects = new List<Rigidbody>();
-
-        Spawned?.Invoke(gameObject, chanceTreshold, explodableObjects);
-        Exploded?.Invoke(explodableObjects);
+        Spawned?.Invoke(gameObject, _chanceTreshold);
         Destroy(gameObject);
+    }
+
+    public void DecreaseChance()
+    {
+        int divisor = 2;
+
+        _chanceTreshold /= divisor;
     }
 }

@@ -6,21 +6,21 @@ public class Detonator : MonoBehaviour
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
     [SerializeField] private ParticleSystem _effect;
-    [SerializeField] private Cube _cube;
+    [SerializeField] private Spawner _spawner;
 
     private void OnEnable()
     {
-        _cube.Exploded += Explode;
+        _spawner.Exploded += Explode;
     }
 
     private void OnDisable()
     {
-        _cube.Exploded -= Explode;
+        _spawner.Exploded -= Explode;
     }
 
-    private void Explode(List<Rigidbody> explodableObjects)
+    private void Explode(List<Rigidbody> explodableObjects, Vector3 particlePosition, Quaternion particleRotation)
     {
-        Instantiate(_effect, transform.position, transform.rotation);
+        Instantiate(_effect, particlePosition, particleRotation);
 
         foreach (Rigidbody explodableObject in explodableObjects)
         {
