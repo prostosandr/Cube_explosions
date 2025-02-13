@@ -7,7 +7,9 @@ public class Cube : MonoBehaviour
 {
     [SerializeField] private float _chanceTreshold;
 
-    public event Action<GameObject, float> Spawned;
+    public event Action<GameObject> MouseClick;
+
+    public float ChanceTreshold => _chanceTreshold;
 
     private void Awake()
     {
@@ -16,7 +18,7 @@ public class Cube : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        Spawned?.Invoke(gameObject, _chanceTreshold);
+        MouseClick?.Invoke(gameObject);
         Destroy(gameObject);
     }
 
