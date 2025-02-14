@@ -13,7 +13,7 @@ public class Detonator : MonoBehaviour
 
         foreach (Rigidbody explodableObject in explodableObjects)
         {
-            explodableObject.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
+            explodableObject.AddExplosionForce(_explosionForce, particlePosition, _explosionRadius);
         }
     }
 }

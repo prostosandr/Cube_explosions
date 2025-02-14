@@ -3,50 +3,32 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Cube _cube;
-    [SerializeField] private Detonator _detonator;
+    [SerializeField] private GameObject _prefabCube;
 
-    private void OnEnable()
+    private List<Rigidbody> _spawnList = new List<Rigidbody>();
+
+    public List<Rigidbody> SpawnList => _spawnList;
+
+    public void Spawn(Cube oldCube, int numberOfCubes)
     {
-        _cube.MouseClicked += Spawn;
-    }
+        _spawnList.Clear();
 
-    private void OnDisable()
-    {
-        _cube.MouseClicked -= Spawn;
-    }
-
-    private void Spawn(Cube cube)
-    {
-        System.Random random = new System.Random();
-
-        List<Rigidbody> explodableObjects = new List<Rigidbody>();
-
-        int divisor = 2;
-        int minCubesNumber = 2;
-        int maxCubesNumber = 7;
-        int minChance = 0;
-        int maxChance = 101;
-
-        _cube = cube;
-
-        if (random.Next(minChance, maxChance) <= _cube.ChanceTreshold)
+        for (int i = 0; i < numberOfCubes; i++)
         {
-            int cubesNumber = random.Next(minCubesNumber, maxCubesNumber);
+            GameObject newGameObjectCube = Instantiate(_prefabCube, oldCube.transform.position, oldCube.transform.rotation);
 
-            for (int i = 0; i < cubesNumber; i++)
+            if(newGameObjectCube.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
             {
-                GameObject newCube = Instantiate(_cube.gameObject);
-                newCube.transform.localScale /= divisor;
-                newCube.GetComponent<Cube>().DecreaseChance();
-                newCube.GetComponent<Cube>().MouseClicked += Spawn;
+                _spawnList.Add(rigidbody);
+            }
 
-                explodableObjects.Add(newCube.GetComponent<Cube>().Rigidbody);
+            if(newGameObjectCube.TryGetComponent<Cube>(out Cube cube))
+            {
+                cube.transform.localScale = oldCube.CurrentScale;
+                cube.SetChanceTreshold(oldCube.ChanceTreshold);
+                
+                cube.DecreaseParametrs();
             }
         }
-
-        _detonator.Explode(explodableObjects, _cube.gameObject.transform.position, _cube.gameObject.transform.rotation);
-
-        _cube.MouseClicked -= Spawn;
     }
 }
