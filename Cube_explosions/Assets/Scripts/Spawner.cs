@@ -8,15 +8,15 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        _cube.MouseClick += Spawn;
+        _cube.MouseClicked += Spawn;
     }
 
     private void OnDisable()
     {
-        _cube.MouseClick -= Spawn;
+        _cube.MouseClicked -= Spawn;
     }
 
-    private void Spawn(GameObject gameObjectCube)
+    private void Spawn(Cube cube)
     {
         System.Random random = new System.Random();
 
@@ -28,25 +28,25 @@ public class Spawner : MonoBehaviour
         int minChance = 0;
         int maxChance = 101;
 
-        _cube = gameObjectCube.GetComponent<Cube>();
+        _cube = cube;
 
-        if (random.Next(minChance, maxChance) <= gameObjectCube.GetComponent<Cube>().ChanceTreshold)
+        if (random.Next(minChance, maxChance) <= _cube.ChanceTreshold)
         {
             int cubesNumber = random.Next(minCubesNumber, maxCubesNumber);
 
             for (int i = 0; i < cubesNumber; i++)
             {
-                GameObject newCube = Instantiate(gameObjectCube);
+                GameObject newCube = Instantiate(_cube.gameObject);
                 newCube.transform.localScale /= divisor;
                 newCube.GetComponent<Cube>().DecreaseChance();
-                newCube.GetComponent<Cube>().MouseClick += Spawn;
+                newCube.GetComponent<Cube>().MouseClicked += Spawn;
 
-                explodableObjects.Add(newCube.GetComponent<Rigidbody>());
+                explodableObjects.Add(newCube.GetComponent<Cube>().Rigidbody);
             }
         }
 
-        _detonator.Explode(explodableObjects, gameObjectCube.transform.position, gameObjectCube.transform.rotation);
+        _detonator.Explode(explodableObjects, _cube.gameObject.transform.position, _cube.gameObject.transform.rotation);
 
-        gameObjectCube.GetComponent<Cube>().MouseClick -= Spawn;
+        _cube.MouseClicked -= Spawn;
     }
 }

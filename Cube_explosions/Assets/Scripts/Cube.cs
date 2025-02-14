@@ -2,14 +2,16 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(Rigidbody))]
 
 public class Cube : MonoBehaviour
 {
     [SerializeField] private float _chanceTreshold;
 
-    public event Action<GameObject> MouseClick;
-
+    public event Action<Cube> MouseClicked;
+    
     public float ChanceTreshold => _chanceTreshold;
+    public Rigidbody Rigidbody => GetComponent<Rigidbody>();
 
     private void Awake()
     {
@@ -18,7 +20,7 @@ public class Cube : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        MouseClick?.Invoke(gameObject);
+        MouseClicked?.Invoke(this);
         Destroy(gameObject);
     }
 
